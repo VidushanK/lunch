@@ -1,9 +1,3 @@
-// create a function that calculates sales and tax
-// create function calculateSalesTax
-// create a funciton that calculates tax
-
-
-
 var salesTaxRates = {
   AB: 0.05,
   BC: 0.12,
@@ -28,21 +22,28 @@ var companySalesData = [
   }
 ];
 
-function calculateSalesTax(salesData, taxRates) {
+function calculateSalesTax(salesData, taxRates)
 
-}
-
-var results = calculateSalesTax(companySalesData, salesTaxRates);
-
-/* Expected Results:
 {
-  Telus: {
-    totalSales: 1300
-    totalTaxes: 144
-  },
-  Bombardier: {
-    totalSales: 800,
-    totalTaxes: 40
-  }
-}
-*/
+ var results = {};
+  for (var i = 0; i < salesData.length; i++){
+      if (results[salesData[i].name] === undefined) {
+    results[salesData[i].name] = {
+      totalSales: 0,
+      totalTaxes: 0
+    };
+      }
+    var joinSales = salesData[i].sales.reduce(function(a,b){return a + b;}, 0);
+    for (var tax in taxRates){
+        tax = joinSales * taxRates[companySalesData[i].province];
+      }
+      results[salesData[i].name].totalSales += joinSales;
+      results[salesData[i].name].totalTaxes += tax;
+    }
+
+  return results;
+ }
+
+
+
+console.log(calculateSalesTax(companySalesData, salesTaxRates));
