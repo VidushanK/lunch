@@ -9,6 +9,7 @@ function Map(arr, index){
     if (index[i] === undefined){
        output.push(arr[i].length);
     }
+     console.log(output);
   }
   return output;
 }
@@ -19,4 +20,3 @@ var words = ["ground", "control", "to", "major", "tom"];
 Map(words, function(word) {
   return word.length;
 });
-
