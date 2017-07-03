@@ -13,11 +13,11 @@ function calculateDayInYear(date) {
   }
 
   function validMonth(month) {
-    return month && month >= 1 && month <= 12;
+    return month && month >= 1 && month < 13;
   }
 
   function validDay(month, day) {
-    return day && day >= 1 && day < DAYS_IN_MONTH[month - 1];
+    return day && day >= 1 && day <= DAYS_IN_MONTH[month - 1];
   }
 
   function calculateDayNumber(month, day) {
@@ -31,7 +31,7 @@ function calculateDayInYear(date) {
   }
 
   function daysInFeb(year) {
-  if (isLeapYear(daysInFeb)){
+  if (isMultiple(year, 400) || isMultiple(year, 100) && isMultiple(year, 4)){
    return 29;
     } else {
       return 28;
@@ -43,7 +43,7 @@ function calculateDayInYear(date) {
 }
 
 function isMultiple(numerator, denominator) {
-  return numerator % denominator === 0;
+  return numerator % denominator == 0;
 }
 
 var date = process.argv[2];
